@@ -5,6 +5,8 @@ import com.zap.rabbitmq.message.entity.InfoMsgVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author: ZhuApeng
  * @Title: RabbitMqMapper
@@ -15,8 +17,9 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface RabbitMqMapper {
 
-    int sendToDb(Info info);
-
     boolean sendMsgToDb(@Param("vo") InfoMsgVo vo, @Param("msgStr") String msgStr);
 
+    int sendToDb(@Param("term") Integer term, @Param("uId") Integer uId);
+
+    List<Info> getList();
 }
