@@ -12,6 +12,6 @@ public interface RabbitMqStatus {
     String DELAY_EXCHANGE ="dealMessage_Exchange";
     String DELAY_QUEUE = "dealMessage_Queue";
     String DELAY_ROUTING_KEY ="dealMessage_Routing_Key";
-    Integer DELAY_TIME=24*60*60*1000;
+    Integer DELAY_TIME=1;
 
 }

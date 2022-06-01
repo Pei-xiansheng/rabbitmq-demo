@@ -1,6 +1,6 @@
 package com.zap.rabbitmq.message.confirm;
 
-import com.zap.rabbitmq.message.commonutils.RabbitMqStatus;
+
 import org.springframework.amqp.core.ReturnedMessage;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

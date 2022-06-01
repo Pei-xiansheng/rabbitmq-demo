@@ -7,11 +7,15 @@
         <result property="term" column="term"></result>
         <result property="uId" column="u_id"></result>
     </resultMap>
-    <insert id="sendToDb" keyProperty="id" useGeneratedKeys="true">
-        insert into mq_info(term,u_id) values(#{info.term},#{info.uId})
+    <insert id="sendToDb" keyProperty="id" useGeneratedKeys="true" parameterType="com.zap.rabbitmq.message.entity.Info">
+        insert into mq_info(term,u_id) values(#{term},#{uId})
     </insert>
     
     <insert id="sendMsgToDb" useGeneratedKeys="true" keyProperty="id">
         insert into mq_msg(message,message_id,u_id) values(#{msgStr},#{vo.messageId},#{vo.uId})
     </insert>
+
+    <select id="getList" resultMap="infoMap">
+        select id,is_return as isReturn,term,u_id as uId from mq_info
+    </select>
 </mapper>

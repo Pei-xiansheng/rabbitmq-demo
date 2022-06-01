@@ -12,6 +12,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -34,20 +35,23 @@ public class RabbitMqServiceImpl implements RabbitMqService {
     //生产者
     @Override
     public boolean dealMessage(Info info) {
-        int messageId = rabbitMqMapper.sendToDb(info);
+//        int messageId = rabbitMqMapper.sendToDb(info.getTerm(),info.getUId());
+        List<Info> infoList = rabbitMqMapper.getList();
+        System.out.println(infoList);
         String string = UUID.randomUUID().toString().substring(0, 6);
-        CorrelationData correlationData = new CorrelationData(string);
-        InfoMsgVo vo = new InfoMsgVo(info.getUId(), messageId,info.getTerm());
-        String voStr = JSON.toJSONString(vo);
-        rabbitTemplate.convertAndSend(RabbitMqStatus.DELAY_EXCHANGE,RabbitMqStatus.DELAY_QUEUE,voStr,(msg)->{
-            msg.getMessageProperties().setDelay(RabbitMqStatus.DELAY_TIME*info.getTerm());
-            return msg;
-        },correlationData);
-        if(messageId!=-1){
-            return true;
-        }else{
-            return false;
-        }
+//        CorrelationData correlationData = new CorrelationData(string);
+//        InfoMsgVo vo = new InfoMsgVo(info.getUId(), messageId,info.getTerm());
+//        String voStr = JSON.toJSONString(vo);
+//        rabbitTemplate.convertAndSend(RabbitMqStatus.DELAY_EXCHANGE,RabbitMqStatus.DELAY_QUEUE,voStr,(msg)->{
+//            msg.getMessageProperties().setDelay(RabbitMqStatus.DELAY_TIME*info.getTerm());
+//            return msg;
+//        },correlationData);
+//        if(messageId!=-1){
+//            return true;
+//        }else{
+//            return false;
+//        }
+        return true;
     }
 
     @Override

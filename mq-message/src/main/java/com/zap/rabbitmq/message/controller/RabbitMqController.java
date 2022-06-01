@@ -3,6 +3,8 @@ package com.zap.rabbitmq.message.controller;
 import com.zap.rabbitmq.message.commonutils.Result;
 import com.zap.rabbitmq.message.entity.Info;
 import com.zap.rabbitmq.message.service.RabbitMqService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +18,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/mq")
+@Api(tags = "预定模块")
 public class RabbitMqController {
 
     @Autowired
     RabbitMqService rabbitMqService;
 
     @PostMapping("/dealMessage")
+    @ApiOperation("发送预定消息")
     public Result dealMessage(@RequestBody Info info){
         boolean flag = rabbitMqService.dealMessage(info);
         if(flag){

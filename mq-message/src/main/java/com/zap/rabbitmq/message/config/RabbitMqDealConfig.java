@@ -19,6 +19,7 @@ import java.util.HashMap;
 @Configuration
 public class RabbitMqDealConfig {
 
+
     @Bean
     public CustomExchange customExchange(){
         HashMap<String, Object> arguments = new HashMap<>();
