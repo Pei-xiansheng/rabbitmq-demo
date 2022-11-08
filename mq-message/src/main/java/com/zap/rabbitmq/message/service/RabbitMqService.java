@@ -14,6 +14,6 @@ import com.zap.rabbitmq.message.entity.InfoMsgVo;
 public interface RabbitMqService {
     //处理预定消息
     boolean dealMessage(Info info);
-
+    //持久化到本地
     boolean dealMsgToDb(InfoMsgVo vo);
 }

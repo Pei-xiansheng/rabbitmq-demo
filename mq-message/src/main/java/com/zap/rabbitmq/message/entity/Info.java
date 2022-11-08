@@ -17,7 +17,10 @@ import lombok.NoArgsConstructor;
 public class Info {
 
     private Integer id;
+    //时间
     private Integer term;
+    //用户ID
     private Integer uId;
+    //是否归还
     private Boolean isReturn;
 }

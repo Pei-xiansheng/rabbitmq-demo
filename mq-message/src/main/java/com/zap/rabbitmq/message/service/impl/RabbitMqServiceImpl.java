@@ -35,23 +35,22 @@ public class RabbitMqServiceImpl implements RabbitMqService {
     //生产者
     @Override
     public boolean dealMessage(Info info) {
-//        int messageId = rabbitMqMapper.sendToDb(info.getTerm(),info.getUId());
-        List<Info> infoList = rabbitMqMapper.getList();
-        System.out.println(infoList);
+        int messageId = rabbitMqMapper.sendToDb(info.getTerm(),info.getUId());
+//        List<Info> infoList = rabbitMqMapper.getList();
+//        System.out.println(infoList);
         String string = UUID.randomUUID().toString().substring(0, 6);
-//        CorrelationData correlationData = new CorrelationData(string);
-//        InfoMsgVo vo = new InfoMsgVo(info.getUId(), messageId,info.getTerm());
-//        String voStr = JSON.toJSONString(vo);
-//        rabbitTemplate.convertAndSend(RabbitMqStatus.DELAY_EXCHANGE,RabbitMqStatus.DELAY_QUEUE,voStr,(msg)->{
-//            msg.getMessageProperties().setDelay(RabbitMqStatus.DELAY_TIME*info.getTerm());
-//            return msg;
-//        },correlationData);
-//        if(messageId!=-1){
-//            return true;
-//        }else{
-//            return false;
-//        }
-        return true;
+        CorrelationData correlationData = new CorrelationData(string);
+        InfoMsgVo vo = new InfoMsgVo(info.getUId(), messageId,info.getTerm());
+        String voStr = JSON.toJSONString(vo);
+        rabbitTemplate.convertAndSend(RabbitMqStatus.DELAY_EXCHANGE,RabbitMqStatus.DELAY_QUEUE,voStr,(msg)->{
+           msg.getMessageProperties().setDelay(RabbitMqStatus.DELAY_TIME*info.getTerm());
+            return msg;
+        },correlationData);
+        if(messageId!=-1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override

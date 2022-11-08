@@ -15,7 +15,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InfoMsgVo {
+    //用户ID
     private Integer uId;
+    //消息ID
     private Integer messageId;
+    //借阅时间
     private Integer term;
 }

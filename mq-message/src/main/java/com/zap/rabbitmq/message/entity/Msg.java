@@ -17,8 +17,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Msg {
     private Integer id;
+    //消息体
     private String message;
+    //是否发送成功
     private Boolean flag;
+    //消息ID
     private Integer messageId;
+    //用户ID
     private Integer uId;
 }
